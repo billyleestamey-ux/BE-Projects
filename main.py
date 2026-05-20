@@ -1,11 +1,12 @@
-import csv
-
-# Read your CSV file
+# Read the CSV file line by line
 with open('data.csv', 'r') as file:
-    reader = csv.DictReader(file)
-    data = list(reader)
+    lines = file.readlines()
     
-# Use your data
-print(f"Loaded {len(data)} rows")
-for row in data:
-    print(row)
+    # First line is headers
+    headers = lines[0].strip().split(',')
+    print(f"Columns: {headers}")
+    
+    # Rest are data rows
+    for line in lines[1:]:
+        values = line.strip().split(',')
+        print(f"Row: {values}")
